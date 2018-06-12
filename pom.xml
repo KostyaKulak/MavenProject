@@ -18,6 +18,27 @@
                 </configuration>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.21.0</version>
+                    <configuration>
+                        <properties>
+                            <property>
+                                <name>listener</name>
+                                <value>Listener</value>
+                            </property>
+                        </properties>
+                        <!-- <suiteXmlFiles>
+                             <suiteXmlFile>runTests.xml</suiteXmlFile>
+                         </suiteXmlFiles>-->
+                        <groups>pagetests</groups>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
 
     <dependencies>
@@ -25,6 +46,12 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>RELEASE</version>
+            <exclusions>
+                <exclusion>  <!-- declare the exclusion here -->
+                    <groupId>sample.ProjectB</groupId>
+                    <artifactId>Project-B</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
@@ -50,6 +77,12 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.21.0</version>
+            <type>maven-plugin</type>
         </dependency>
     </dependencies>
 

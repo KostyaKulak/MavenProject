@@ -31,6 +31,7 @@ public class GoogleSearchPage {
     }
 
     public GoogleSearchPage search(String searchString) {
+        LOGGER.info("Search for " + searchString);
         searchField.sendKeys(searchString);
         searchButton.click();
         return this;
@@ -38,7 +39,7 @@ public class GoogleSearchPage {
 
     public boolean isExpectedPage(String url) {
         LOGGER.debug("Start comparing current page with " + url);
-        return webDriverDecorator.getCurrentUrl().equals(url);
+        return webDriverDecorator.getCurrentUrl().contains(url);
     }
 
     public void refresh() {
